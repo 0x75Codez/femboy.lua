@@ -122,8 +122,8 @@ local gui = {
     waitingForKey = false,
     activeKeybind = nil,
     currentTab = "Anti-Aim",
-    targetWidth = 300,
-    targetHeight = 590,
+    targetWidth = 500,
+    targetHeight = 600,
     alpha = 1,
     tabAlpha = 1,
     activeDropdown = nil,
@@ -137,7 +137,9 @@ local gui = {
 local tabSettings = {
     ["Anti-Aim"] = {},
     ["Rage"] = {},
-    ["Misc"] = {}
+    ["Misc"] = {},
+    ["Visuals"] = {},
+    ["Unused"] = {}
 }
 
 local function round(exact, quantum)
@@ -631,8 +633,9 @@ local function renderGui()
     local tabHeight = 25
     local tabX = gui.x + 10
     local tabY = gui.y + 40
-    local tabs = {"Anti-Aim", "Rage", "Misc"}
-    
+    local tabs = {"Anti-Aim", "Rage", "Misc", "Visuals", "Unused"}
+
+
     for i, tab in ipairs(tabs) do
         local tab_background_color = gui.currentTab == tab and outline_color or color_t(34/255, 34/255, 34/255, gui.alpha)
         render.rect_filled(
@@ -2321,14 +2324,14 @@ end
 
 local function draw_player_state()
     local display_states = {
-        ["landed"] = "landed",
-        ["air"] = "~in-air~",
-        ["air_duck"] = "~air-ducking~",
-        ["crouch_walk"] = "~duck-walking~",
-        ["crouch"] = "~ducking~",
-        ["walk"] = "~walking~",
-        ["stand"] = "~standing~",
-        ["unknown"] = "~unknown~"
+        ["landed"] = "[LANDED]",
+        ["air"] = "[IN-AIR]",
+        ["air_duck"] = "[AIR-DUCK]",
+        ["crouch_walk"] = "[DUCK-WALKING]",
+        ["crouch"] = "[DUCKING]",
+        ["walk"] = "[WALKING]",
+        ["stand"] = "[STANDING]",
+        ["unknown"] = "[UNKNOWN]"
     }
     
     if current_state ~= "unknown" then
